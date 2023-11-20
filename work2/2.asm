@@ -1,0 +1,24 @@
+DATAS SEGMENT
+    ;此处输入数据段代码
+    buf1 DB ?
+    buf2 DB ?  
+DATAS ENDS
+
+STACKS SEGMENT
+    ;此处输入堆栈段代码
+STACKS ENDS
+
+CODES SEGMENT
+    ASSUME CS:CODES,DS:DATAS,SS:STACKS
+START:
+    MOV AX,DATAS
+    MOV DS,AX
+    MOV AH,01
+    INT 21H
+    MOV buf1,AL
+    ADD AL,20H
+    MOV buf2,AL
+    MOV AH,4CH
+    INT 21H
+CODES ENDS
+    END START
